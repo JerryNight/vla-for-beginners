@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 270" width="760" height="270" role="img" aria-label="VLA 是一个条件概率分布，输出的是动作的概率地图而不是单个动作">
+  <defs>
+    <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9ca3af"/>
+    </marker>
+    <style>
+      text { font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif; }
+      .h { font-size: 13px; font-weight: 600; fill: #1f2937; }
+      .s { font-size: 10.5px; fill: #6b7280; }
+      .axis { font-size: 10px; fill: #9ca3af; }
+      .mark { font-size: 10.5px; fill: #2563eb; font-weight: 600; }
+      .warn { font-size: 10.5px; fill: #dc2626; }
+    </style>
+  </defs>
+
+  <!-- 观测：图像 -->
+  <rect x="24" y="28" width="150" height="66" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+  <text class="h" x="99" y="46" text-anchor="middle">观测 o</text>
+  <text class="s" x="99" y="63" text-anchor="middle">相机画面</text>
+  <text class="s" x="99" y="80" text-anchor="middle">＋ 机器人自身关节角度</text>
+
+  <!-- π -->
+  <circle cx="252" cy="103" r="46" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.6"/>
+  <text x="252" y="100" text-anchor="middle" style="font-size:26px;font-weight:600;fill:#6d28d9;font-family:Georgia,serif">π</text>
+  <text class="s" x="252" y="120" text-anchor="middle">策略</text>
+
+  <path d="M174,62 H200" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar2)"/>
+  <path d="M174,112 H200" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar2)"/>
+
+  <!-- 语言条件 -->
+  <rect x="24" y="150" width="150" height="56" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+  <text class="h" x="99" y="171" text-anchor="middle">指令 l</text>
+  <text class="s" x="99" y="190" text-anchor="middle">「把红杯子放到盘子上」</text>
+  <path d="M174,178 H200 V126" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar2)"/>
+
+  <!-- 输出的概率分布 -->
+  <path d="M298,103 H372" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar2)"/>
+
+  <path d="M380,198 C 420 196, 450 55, 475 55 C 500 55, 518 193, 530 195 C 542 193, 560 75, 595 75 C 630 75, 655 196, 700 198 L 736 198 Z"
+        fill="#dbeafe" fill-opacity="0.75" stroke="#3b82f6" stroke-width="1.8"/>
+  <line x1="380" y1="198" x2="736" y2="198" stroke="#9ca3af" stroke-width="1.2"/>
+
+  <text class="mark" x="475" y="42" text-anchor="middle">动作 A</text>
+  <text class="mark" x="595" y="62" text-anchor="middle">动作 B</text>
+
+  <!-- 均值陷阱 -->
+  <line x1="530" y1="198" x2="530" y2="150" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text class="warn" x="530" y="140" text-anchor="middle">平均值在这儿</text>
+  <text class="warn" x="530" y="218" text-anchor="middle">两个杯子中间，抓不到任何一个</text>
+
+  <text class="axis" x="736" y="214" text-anchor="end">动作值 →</text>
+  <text class="axis" x="378" y="58" text-anchor="end">可能性</text>
+</svg>

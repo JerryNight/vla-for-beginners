@@ -1,0 +1,2640 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="从零理解视觉-语言-动作模型（Vision-Language-Action），一本不要求你动手的概念手册">
+      
+      
+        <meta name="author" content="VLA 入门手册 contributors">
+      
+      
+        <link rel="canonical" href="https://JerryNight.github.io/vla-for-beginners/part1-three-words/06-action/">
+      
+      
+        <link rel="prev" href="../05-language/">
+      
+      
+        <link rel="next" href="../../part2-connecting/07-alignment/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>2.3 动作：机器人怎么"动"才算动 - VLA 入门手册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#23" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="VLA 入门手册" class="md-header__button md-logo" aria-label="VLA 入门手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.5 15.5c0 1.11-.89 2-2 2s-2-.89-2-2 .9-2 2-2 2 .9 2 2m-9-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.89 2-2-.89-2-2-2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VLA 入门手册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2.3 动作：机器人怎么"动"才算动
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/JerryNight/vla-for-beginners" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    vla-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  开始之前
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part0-why/00-five-misconceptions/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  第一部分 · 先把误解拆掉
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../03-prerequisites/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  第二部分 · 三个词拆开看
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part2-connecting/07-alignment/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  第三部分 · 怎么把三者连起来
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part3-training/10-data/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  第四部分 · 训练到底在训练什么
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part4-map/13-lineage/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  第五部分 · 模型谱系地图
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part5-reality/16-bottlenecks/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  第六部分 · 诚实的部分
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part6-next/18-how-to-continue/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  第七部分 · 接下来怎么走
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../appendix/glossary/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  附录
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="VLA 入门手册" class="md-nav__button md-logo" aria-label="VLA 入门手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.5 15.5c0 1.11-.89 2-2 2s-2-.89-2-2 .9-2 2-2 2 .9 2 2m-9-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.89 2-2-.89-2-2-2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2z"/></svg>
+
+    </a>
+    VLA 入门手册
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/JerryNight/vla-for-beginners" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    vla-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开始之前
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    开始之前
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reading-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    怎么读这本书
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第一部分 · 先把误解拆掉
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第一部分 · 先把误解拆掉
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part0-why/00-five-misconceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 关于 VLA 的五个误解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part0-why/01-why-vla/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 为什么非要 VLA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part0-why/02-definition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 VLA 的一句话定义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二部分 · 三个词拆开看
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第二部分 · 三个词拆开看
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.0 读后面所有章节前，先补三个地基
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 视觉：一张图怎么变成一串数字
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-language/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 语言：机器怎么"听懂"人话
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 动作：机器人怎么"动"才算动
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 动作：机器人怎么"动"才算动
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一个动作，是 7 个数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        坐标系：动作总是「相对某个东西」
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关节空间 vs 笛卡尔空间
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        旋转怎么表示：一个真正的坑
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="旋转怎么表示：一个真正的坑">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#roll-pitch-yaw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案一：欧拉角（roll / pitch / yaw）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quaternion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案二：四元数（quaternion）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案三：6D 旋转表示（现在的标准做法）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        绝对动作 vs 相对动作
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        时间维度：机器人动作是「一段」，不是一个点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="时间维度：机器人动作是「一段」，不是一个点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制频率的现实
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-chunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解法：动作块（action chunk）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么要归一化
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        动作是「多峰」的
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最后一个，也是最麻烦的问题：不同机器人的动作不一样
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本章小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三部分 · 怎么把三者连起来
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第三部分 · 怎么把三者连起来
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-connecting/07-alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 对齐：CLIP 为什么是分水岭
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-connecting/08-fusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 融合：三股信息在哪里合流
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-connecting/09-action-head/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 动作解码：三种把想法变成数字的流派
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第四部分 · 训练到底在训练什么
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第四部分 · 训练到底在训练什么
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part3-training/10-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 数据：一条机器人训练数据长什么样
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part3-training/11-behavior-cloning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 行为克隆：模仿学习为什么会翻车
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part3-training/12-pretrain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 预训练与后训练：常识从哪来，动作从哪来
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第五部分 · 模型谱系地图
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第五部分 · 模型谱系地图
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-map/13-lineage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5.1 谱系总览：五年，五个转折
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-map/14-pi0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5.2 π₀ 与流匹配：为什么它把速度提到了 50Hz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-map/15-hierarchical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5.3 分层 VLA：让大脑和小脑分工
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第六部分 · 诚实的部分
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第六部分 · 诚实的部分
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part5-reality/16-bottlenecks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6.1 两个卡脖子的硬约束
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part5-reality/17-evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6.2 泛化与评测：怎么判断一个 VLA 是真行还是演得好
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第七部分 · 接下来怎么走
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第七部分 · 接下来怎么走
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part6-next/18-how-to-continue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7.1 三条不同的继续学习路径
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    附录
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    附录
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    术语表（中英对照）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    论文与资源清单
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/playground/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    零硬件游乐场
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常见问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一个动作，是 7 个数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        坐标系：动作总是「相对某个东西」
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关节空间 vs 笛卡尔空间
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        旋转怎么表示：一个真正的坑
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="旋转怎么表示：一个真正的坑">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#roll-pitch-yaw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案一：欧拉角（roll / pitch / yaw）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quaternion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案二：四元数（quaternion）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案三：6D 旋转表示（现在的标准做法）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        绝对动作 vs 相对动作
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        时间维度：机器人动作是「一段」，不是一个点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="时间维度：机器人动作是「一段」，不是一个点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制频率的现实
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-chunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解法：动作块（action chunk）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么要归一化
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        动作是「多峰」的
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最后一个，也是最麻烦的问题：不同机器人的动作不一样
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本章小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="23">2.3 动作：机器人怎么「动」才算动<a class="headerlink" href="#23" title="Permanent link">&para;</a></h1>
+<p>这一章是全书技术密度最高的一节，也是最容易被教程含糊带过的一节。</p>
+<p>原因很简单：写教程的人大多从视觉或 NLP 转过来，对「动作」这个东西没有肌肉记忆。于是「模型输出一个动作」这句话就写完了，读者却完全不知道这个动作到底长什么样。</p>
+<hr />
+<h2 id="7">一个动作，是 7 个数<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<p>在绝大多数 VLA 系统里，一个动作是一个 7 维向量。</p>
+<figure class="figure">
+<p><img alt="7 维动作向量" src="../../assets/img/action-vector.svg" /></p>
+<figcaption class="caption">七个数，三类含义：往哪走（3 个）、转多少（3 个）、抓不抓（1 个）。</figcaption>
+</figure>
+<p>前三个是<strong>末端执行器</strong>（夹爪或工具）在三个方向上的位移，单位通常是米。</p>
+<p>中间三个是<strong>旋转</strong>，单位是弧度。</p>
+<p>最后一个 <span class="arithmatex">\(g\)</span> 是<strong>夹爪的开合度</strong>，通常 0 到 1 之间，0 是全开，1 是全闭（或者反过来，取决于约定）。</p>
+<div class="admonition warning">
+<p class="admonition-title">维度不是固定的</p>
+<p>7 维是「单臂 + 二指夹爪」的标准配置。换一个本体，维度立刻变：</p>
+<ul>
+<li>双臂：14 维</li>
+<li>带灵巧手（比如 6 指）：7 + 12 或更多</li>
+<li>人形机器人：可能 30 维以上（还要含移动底盘）</li>
+</ul>
+<p>这个事实后面会变成一个巨大的麻烦，见本章最后一节。</p>
+</div>
+<hr />
+<h2 id="_1">坐标系：动作总是「相对某个东西」<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>「往前 2 厘米」这句话，得先知道「前」是哪个方向。</p>
+<p>机器人里至少有三个常用的坐标系：</p>
+<table>
+<thead>
+<tr>
+<th>坐标系</th>
+<th>含义</th>
+<th>适合什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>世界系</strong></td>
+<td>以房间地面某点为原点</td>
+<td>导航、移动底盘</td>
+</tr>
+<tr>
+<td><strong>基座系</strong></td>
+<td>以机器人底座为原点</td>
+<td>单臂操作，最常见</td>
+</tr>
+<tr>
+<td><strong>末端系</strong></td>
+<td>以夹爪本身为原点</td>
+<td>抓取、精细操作</td>
+</tr>
+</tbody>
+</table>
+<p>同一个动作，在这三个系里的数字完全不同。</p>
+<p><strong>VLA 输出的动作，绝大多数是「基座系下的末端位姿增量」。</strong> 也就是：以机器人的肩膀所在位置为原点，告诉它「夹爪相对于现在的位置，该往哪挪多少」。</p>
+<p>这个约定很重要，因为它让模型不需要知道世界有多大、房间在哪——它只管自己手边的几厘米。</p>
+<hr />
+<h2 id="vs">关节空间 vs 笛卡尔空间<a class="headerlink" href="#vs" title="Permanent link">&para;</a></h2>
+<p>这是机器人学里最基本的一个区分，但很多人第一次听说时会懵。</p>
+<p>假设你要让机械臂把夹爪移到桌上一个点。有两种说法：</p>
+<p><strong>说法 A（笛卡尔空间 / 任务空间）</strong></p>
+<blockquote>
+<p>「夹爪移到 (0.4, 0.2, 0.1)。」</p>
+</blockquote>
+<p><strong>说法 B（关节空间）</strong></p>
+<blockquote>
+<p>「一号关节转到 30°，二号转到 −45°，三号转到 60°，四号转到 15°，五号转到 90°，六号转到 0°。」</p>
+</blockquote>
+<p>两种说法描述的是<strong>同一个结果</strong>，但表达层次完全不同。</p>
+<div class="analogy">
+<p><strong>类比</strong></p>
+<p>你想让手摸到鼻子。</p>
+<p>说法 A 是「手移到鼻尖前面 2 厘米」——你在描述<strong>目标</strong>。
+说法 B 是「肩关节转 20 度、肘关节弯 90 度、腕关节转 15 度」——你在描述<strong>每个关节怎么办</strong>。</p>
+<p>对你自己来说，你从来不用想 B，你只想 A，身体自动完成了 B 的计算。</p>
+</div>
+<p><strong>为什么 VLA 几乎都输出笛卡尔空间的动作？</strong></p>
+<p>三个原因：</p>
+<ol>
+<li><strong>跨本体更容易</strong>。不同机器人的关节数、长度、结构完全不同，但「末端往哪走」这个描述是通用的。</li>
+<li><strong>和人怎么想事情一致</strong>。「把杯子拿起来」是个任务级的目标，不是关节角度。</li>
+<li><strong>误差更容易修正</strong>。末端位置错了，下一步直接补；关节角度错了，可能导致整条手臂姿态扭曲。</li>
+</ol>
+<p>那个「从 A 算出 B」的过程，叫<strong>逆运动学（inverse kinematics，IK）</strong>。它由底层控制器负责，VLA 不管。</p>
+<p>所以真实的调用链是：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>VLA 输出：(Δx, Δy, Δz, Δrx, Δry, Δrz, g)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    ↓
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>逆运动学：算出六个关节各自该到多少度
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    ↓
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>轨迹规划：保证这条路径不撞到东西
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    ↓
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>伺服控制：每个电机给多少电流
+</code></pre></div>
+<p><strong>VLA 只负责第一行。</strong> 这也是为什么它不可能取代传统控制（<a href="../../part0-why/00-five-misconceptions/">1.1 节</a>说过）。</p>
+<hr />
+<h2 id="_2">旋转怎么表示：一个真正的坑<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>位移用三个数表示很自然（x、y、z）。旋转呢？</p>
+<p>这里藏着 VLA 里最不直观的一个设计决策。</p>
+<h3 id="roll-pitch-yaw">方案一：欧拉角（roll / pitch / yaw）<a class="headerlink" href="#roll-pitch-yaw" title="Permanent link">&para;</a></h3>
+<p>用三个角度分别表示绕三个轴的旋转。<strong>人最容易理解</strong>，也是很多教程默认的表示。</p>
+<p><strong>问题一：万向锁。</strong></p>
+<p>当 pitch 转到 ±90° 时，roll 和 yaw 会变成绕同一根轴转，<strong>两者失去独立性</strong>。这时候你只丢了一个自由度，控制会突然变得极其别扭。</p>
+<p><strong>问题二：不连续。</strong></p>
+<p>从 179° 转到 −179°，实际只转了 2°，但在数值上差了 358°。神经网络看到一个巨大的跳变，会学得很痛苦。</p>
+<h3 id="quaternion">方案二：四元数（quaternion）<a class="headerlink" href="#quaternion" title="Permanent link">&para;</a></h3>
+<p>用四个数表示旋转，没有万向锁，插值也平滑。</p>
+<p><strong>问题：双重覆盖。</strong></p>
+<p>四元数 <span class="arithmatex">\(q\)</span> 和 <span class="arithmatex">\(-q\)</span> 表示的是<strong>完全相同的旋转</strong>。</p>
+<p>对人类来说这没问题，但神经网络看到的是两组完全不同的输入对应同一个输出——<strong>这是一对矛盾样本，会直接破坏训练。</strong></p>
+<h3 id="6d">方案三：6D 旋转表示（现在的标准做法）<a class="headerlink" href="#6d" title="Permanent link">&para;</a></h3>
+<p><strong>把 3×3 旋转矩阵的前两列拿出来，6 个数。</strong></p>
+<p>为什么只要两列？因为旋转矩阵的三列是互相正交的，第三列可以由前两列叉乘得到。所以 6 个数就够完整描述一个旋转。</p>
+<p>这个表示的好处：</p>
+<ul>
+<li><strong>没有冗余</strong>：不会出现两个数描述同一个东西；</li>
+<li><strong>没有不连续</strong>：矩阵元素是连续变化的，不会突然跳；</li>
+<li><strong>网络友好</strong>：6 个连续实数，直接回归就行。</li>
+</ul>
+<p><strong>用了 6D 旋转之后，动作维度就从 7 变成了 10</strong>：3 + 6 + 1。</p>
+<p>所以你会看到两种配置并存，都不是错的：</p>
+<ul>
+<li><strong>7 维</strong>：3 位移 + 3 欧拉角 + 1 夹爪。简单直观，早期工作和不少现役系统仍在用；</li>
+<li><strong>10 维</strong>：3 位移 + 6 旋转 + 1 夹爪。数值性质更好，新系统更倾向这一套。</li>
+</ul>
+<p>如果你自己设计系统，10 维通常更省心——省下的是日后调参和排查「为什么学不会旋转」的时间。</p>
+<div class="admonition note">
+<p class="admonition-title">读论文时的对照表</p>
+<table>
+<thead>
+<tr>
+<th>旋转表示</th>
+<th>动作总维度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>欧拉角</td>
+<td>7（3 + 3 + 1）</td>
+</tr>
+<tr>
+<td>6D 旋转</td>
+<td>10（3 + 6 + 1）</td>
+</tr>
+<tr>
+<td>四元数</td>
+<td>8（3 + 4 + 1）</td>
+</tr>
+</tbody>
+</table>
+<p>看到 7 维，通常是欧拉角；看到 10 维，通常是 6D 旋转。
+<strong>这个细节能帮你判断一篇论文的工程成熟度</strong>——用 6D 的，一般踩过坑。</p>
+</div>
+<hr />
+<h2 id="vs_1">绝对动作 vs 相对动作<a class="headerlink" href="#vs_1" title="Permanent link">&para;</a></h2>
+<p><strong>绝对动作</strong>：直接给出目标位姿的绝对值。</p>
+<blockquote>
+<p>「夹爪应该在 (0.42, 0.11, 0.30)，朝向这样。」</p>
+</blockquote>
+<p><strong>相对动作（delta）</strong>：给出相对于当前状态的增量。</p>
+<blockquote>
+<p>「从当前位置往前 2 毫米，往左 5 毫米，转 3 度。」</p>
+</blockquote>
+<p><strong>为什么相对动作更常用？</strong></p>
+<p>三个理由，每一个都很实际：</p>
+<ol>
+<li><strong>不需要精确的绝对定位</strong>。机器人通过视觉估计自己位置，总有几毫米误差。如果用绝对动作，这个误差会一直存在；用相对动作，下一步可以自然修正。</li>
+<li><strong>对相机外参不敏感</strong>。相机装歪了一点，绝对坐标全错，但相对位移还好。</li>
+<li><strong>闭环友好</strong>。每一帧重新算一次增量，天然就是一个反馈控制器。</li>
+</ol>
+<p>代价是：<strong>误差会累积</strong>。如果每一步都往前多走 0.5 毫米，走一百步就偏了 5 厘米。这就是为什么动作最好别只闭环到视觉上，还要有本体感知来兜底。</p>
+<hr />
+<h2 id="_3">时间维度：机器人动作是「一段」，不是一个点<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>这是动作和语言最本质的区别之一。</p>
+<p>语言模型生成一个词，那一个词就是最终产物。机器人输出一个动作，那只是<strong>这一瞬间</strong>该怎么办——半秒后情况就变了。</p>
+<p>于是有个问题：<strong>模型该多快输出一次？</strong></p>
+<h3 id="_4">控制频率的现实<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>典型频率</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>电机伺服</td>
+<td>1000 Hz</td>
+<td>底层电流环</td>
+</tr>
+<tr>
+<td>轨迹规划</td>
+<td>100–500 Hz</td>
+<td>保证路径平滑</td>
+</tr>
+<tr>
+<td><strong>VLA 输出</strong></td>
+<td><strong>3–10 Hz</strong>（早期）/ <strong>30–50 Hz</strong>（新模型）</td>
+<td>上层决策</td>
+</tr>
+<tr>
+<td>人类操作</td>
+<td>约 10 Hz</td>
+<td>人手的反应速度</td>
+</tr>
+</tbody>
+</table>
+<p><strong>矛盾就在这</strong>：机器人底层需要 100 Hz 的指令流，但一个 70 亿参数的模型推理一次要几百毫秒，只能跑到 3–10 Hz。</p>
+<p>如果直接让 VLA 以 5 Hz 输出，中间那 20 毫秒的空档，机械臂要么停着（动作一顿一顿），要么按上一次的指令硬走（容易撞）。</p>
+<h3 id="action-chunk">解法：动作块（action chunk）<a class="headerlink" href="#action-chunk" title="Permanent link">&para;</a></h3>
+<p><strong>一次输出未来 k 步的动作，而不是一步。</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>普通做法（每帧输出 1 个动作）：
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>帧1 → a₁   帧2 → a₂   帧3 → a₃   ...     每帧都要推理一次
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>动作块（一次输出 k 个）：
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>帧1 → [a₁, a₂, ..., a_k]                  推理一次，执行 k 帧
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>帧(k+1) → [a_{k+1}, ..., a_{2k}]
+</code></pre></div>
+<p>这样推理频率可以降到原来的 1/k，而底层依然有高频指令。</p>
+<p>这个技巧最早是 <strong>ACT</strong>（2023）推广开的，现在几乎成了标配。π₀ 一次预测 50 步，在 50 Hz 下就是 1 秒的动作——所以它既能跑 50 Hz，又只需要每秒推理几次。</p>
+<div class="admonition note">
+<p class="admonition-title">动作块的两个副作用</p>
+<p><strong>好处</strong>：动作更连贯。因为 k 步是一次性生成的，彼此之间天然连贯，不会出现「每一步都重新决策」导致的抖动。</p>
+<p><strong>坏处</strong>：反应变慢。如果执行到第 30 步时突然出现意外（有人伸手过来），模型要等这一块执行完才能反应。
+后来的改进办法是「重叠执行」——不用等 k 步全走完，走一半就生成下一块，两段重叠着用。</p>
+</div>
+<hr />
+<h2 id="_5">为什么要归一化<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>所有 VLA 都会把动作归一化到 <span class="arithmatex">\([-1, 1]\)</span> 区间再训练。</p>
+<p>原因很实在：</p>
+<ul>
+<li>位移可能是 0.001 米，旋转可能是 0.8 弧度，夹爪是 0 或 1——<strong>量级差了几百倍</strong>；</li>
+<li>神经网络对输入输出的量级很敏感，量级差太大，梯度会被大数主导，小数那部分学不动。</li>
+</ul>
+<p>归一化的做法通常是：统计整个数据集每一维的 1% 和 99% 分位数，然后线性映射到 <span class="arithmatex">\([-1, 1]\)</span>。执行时再反归一化回来。</p>
+<p><strong>一个小坑</strong>：不同数据集的归一化统计量不一样。如果混用多个数据集训练，归一化参数没对齐，模型学出来的动作幅度就会乱。这是很多开源项目复现失败的原因之一。</p>
+<hr />
+<h2 id="_6">动作是「多峰」的<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>同一个场景，合理动作往往不止一个。</p>
+<ul>
+<li>抓杯子：可以从正上方抓、从侧面抓、从斜 45° 抓；</li>
+<li>放盘子：可以轻放、可以快速放下；</li>
+<li>绕障碍：可以从左边绕、从右边绕。</li>
+</ul>
+<p>人类示教数据里，这两种做法都会出现。</p>
+<p>如果用简单的回归（最小化均方误差）去学，模型会输出<strong>两个峰的平均</strong>——落在中间那个没意义的位置。</p>
+<p>这就是<a href="../../part0-why/02-definition/">1.3 节</a>讲过的「模式平均」。也是为什么动作解码要用概率模型（扩散、流匹配），而不是直接回归。</p>
+<hr />
+<h2 id="_7">最后一个，也是最麻烦的问题：不同机器人的动作不一样<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>前面说过，动作维度因本体而异：</p>
+<table>
+<thead>
+<tr>
+<th>本体</th>
+<th>动作维度</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单臂 + 二指夹爪</td>
+<td>7 或 10</td>
+<td>最常见</td>
+</tr>
+<tr>
+<td>双臂</td>
+<td>14 或 20</td>
+<td>两个 7/10 拼起来</td>
+</tr>
+<tr>
+<td>带灵巧手</td>
+<td>20+</td>
+<td>每根手指都有自由度</td>
+</tr>
+<tr>
+<td>移动底盘</td>
+<td>2–3</td>
+<td>线速度 + 角速度</td>
+</tr>
+<tr>
+<td>人形</td>
+<td>30+</td>
+<td>腿 + 腰 + 双臂 + 手</td>
+</tr>
+</tbody>
+</table>
+<p><strong>这意味着一个在单臂数据上训好的模型，输出层根本没法直接用在双臂机器人上。</strong></p>
+<p>这个问题的学名叫<strong>跨本体（cross-embodiment）</strong>。目前有三种应对方式：</p>
+<ol>
+<li><strong>统一成末端位姿</strong>：不管什么机器人，都只输出「末端在哪、朝向如何、夹爪开合」。把差异藏在底层控制器里。这是最主流的做法。</li>
+<li><strong>零填充</strong>：给每台机器人一个固定长度的动作向量，用不到的位置填 0，同时告诉模型「这是哪台机器人的第几个关节」。</li>
+<li><strong>分本体训练专门的头</strong>：共享主干，每个本体一个输出层。参数效率低，但效果稳。</li>
+</ol>
+<p><strong>这三种方式没有哪个是完美的。</strong> 跨本体现在依然是开放问题（<a href="../../part5-reality/16-bottlenecks/">6.1 节</a>会再提），这也是为什么「通用机器人」离真正落地还有距离。</p>
+<hr />
+<h2 id="_8">本章小结<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>动作看起来只是「几个数字」，但它牵扯的东西比想象中多：</p>
+<ul>
+<li><strong>坐标系</strong>决定了这个数字相对谁；</li>
+<li><strong>关节空间 vs 笛卡尔空间</strong>决定了模型输出的是「目标」还是「每个关节怎么办」；</li>
+<li><strong>旋转表示</strong>决定了网络好不好学（6D 是当前最优解）；</li>
+<li><strong>绝对 vs 相对</strong>决定了误差怎么累积；</li>
+<li><strong>时间维度</strong>决定了推理频率和动作块的设计；</li>
+<li><strong>多峰性</strong>决定了为什么需要概率模型；</li>
+<li><strong>跨本体</strong>决定了「通用」这个词能走多远。</li>
+</ul>
+<p><strong>这七件事，没有一件是视觉或语言那边会遇到的。</strong> 这就是为什么 VLA 里真正难的部分在动作这一侧。</p>
+<div class="quiz">
+<p><strong>自测三问</strong></p>
+<ol>
+<li>为什么 VLA 更愿意输出笛卡尔空间的末端位姿，而不是关节角度？说出两条理由。</li>
+<li>欧拉角的问题是什么？6D 旋转表示为什么能绕开它？为什么四元数也不理想？</li>
+<li>动作块（action chunk）解决了什么问题？它又引入了什么新问题？</li>
+</ol>
+</div>
+<div class="takeaway">
+<p>动作是 7 或 10 个连续实数：3 个位移 + 3/6 个旋转 + 1 个夹爪。
+它相对基座系、通常是增量、需要归一化、有多峰性、且因本体而异——这五件事构成了 VLA 真正的技术难点。</p>
+</div>
+<hr />
+<p><a class="md-button" href="../../part2-connecting/07-alignment/">进入第三部分：怎么把三者连起来 →</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../05-language/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 2.2 语言：机器怎么&#34;听懂&#34;人话">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                2.2 语言：机器怎么"听懂"人话
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../part2-connecting/07-alignment/" class="md-footer__link md-footer__link--next" aria-label="下一页: 3.1 对齐：CLIP 为什么是分水岭">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                3.1 对齐：CLIP 为什么是分水岭
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      内容以 CC BY-NC-SA 4.0 协议共享 · 代码以 MIT 协议开源
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430" width="760" height="430" role="img" aria-label="CLIP 把图像和文本映射到同一个向量空间，同义的靠近">
+  <defs>
+    <marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9ca3af"/>
+    </marker>
+    <style>
+      text { font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif; }
+      .h { font-size: 12.5px; font-weight: 600; fill: #1f2937; }
+      .s { font-size: 10.5px; fill: #6b7280; }
+      .lbl { font-size: 11px; fill: #374151; font-weight: 600; }
+      .leg { font-size: 10px; fill: #6b7280; }
+    </style>
+  </defs>
+
+  <!-- 图像一侧 -->
+  <rect x="30" y="34" width="112" height="76" rx="7" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+  <rect x="62" y="56" width="34" height="34" rx="3" fill="#ef4444" fill-opacity="0.75"/>
+  <path d="M96,66 h10 a8,8 0 0 1 0,16 h-10" fill="none" stroke="#ef4444" stroke-width="3"/>
+  <text class="s" x="86" y="126" text-anchor="middle">一张图</text>
+
+  <path d="M146,72 H168" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar4)"/>
+
+  <rect x="170" y="46" width="112" height="52" rx="7" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.2"/>
+  <text class="h" x="226" y="68" text-anchor="middle">图像编码器</text>
+  <text class="s" x="226" y="85" text-anchor="middle">ViT / ResNet</text>
+
+  <!-- 文本一侧 -->
+  <rect x="618" y="34" width="112" height="76" rx="7" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+  <text class="h" x="674" y="66" text-anchor="middle">「一个红色的</text>
+  <text class="h" x="674" y="86" text-anchor="middle">杯子」</text>
+  <text class="s" x="674" y="126" text-anchor="middle">一句话</text>
+
+  <path d="M614,72 H592" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar4)"/>
+
+  <rect x="478" y="46" width="112" height="52" rx="7" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.2"/>
+  <text class="h" x="534" y="68" text-anchor="middle">文本编码器</text>
+  <text class="h" x="534" y="85" text-anchor="middle" style="font-size:11px;font-weight:400">Transformer</text>
+
+  <!-- 两边都投射到同一个空间 -->
+  <path d="M226,98 V150 H320" stroke="#9ca3af" stroke-width="1.5" fill="none"/>
+  <path d="M534,98 V150 H440" stroke="#9ca3af" stroke-width="1.5" fill="none"/>
+  <path d="M320,150 H440" stroke="#9ca3af" stroke-width="1.5" fill="none"/>
+  <path d="M380,150 V178" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar4)"/>
+  <text class="s" x="380" y="170" text-anchor="middle">投射到同一个空间</text>
+
+  <!-- 嵌入空间 -->
+  <rect x="180" y="196" width="400" height="196" rx="8" fill="#fafafa" stroke="#d1d5db" stroke-width="1.2" stroke-dasharray="4 3"/>
+
+  <!-- 簇：杯子 -->
+  <circle cx="268" cy="262" r="6" fill="#3b82f6"/>
+  <circle cx="276" cy="256" r="6" fill="none" stroke="#f97316" stroke-width="2"/>
+  <text class="lbl" x="252" y="243" text-anchor="middle">杯子</text>
+
+  <!-- 簇：狗 -->
+  <circle cx="470" cy="272" r="6" fill="#3b82f6"/>
+  <circle cx="462" cy="280" r="6" fill="none" stroke="#f97316" stroke-width="2"/>
+  <text class="lbl" x="486" y="258" text-anchor="middle">狗</text>
+
+  <!-- 簇：桌子 -->
+  <circle cx="356" cy="350" r="6" fill="#3b82f6"/>
+  <circle cx="364" cy="344" r="6" fill="none" stroke="#f97316" stroke-width="2"/>
+  <text class="lbl" x="340" y="332" text-anchor="middle">桌子</text>
+
+  <!-- 图例 -->
+  <circle cx="196" cy="378" r="5" fill="#3b82f6"/>
+  <text class="leg" x="206" y="382">图像向量</text>
+  <circle cx="276" cy="378" r="5" fill="none" stroke="#f97316" stroke-width="2"/>
+  <text class="leg" x="286" y="382">文本向量</text>
+  <text class="leg" x="380" y="382">同一个意思 → 落在同一个点</text>
+</svg>

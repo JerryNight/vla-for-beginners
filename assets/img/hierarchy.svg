@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" width="760" height="250" role="img" aria-label="分层 VLA：高层慢速决定做什么，低层快速决定怎么做">
+  <defs>
+    <marker id="ar7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c4b5fd"/>
+    </marker>
+    <style>
+      text { font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif; }
+      .h { font-size: 12.5px; font-weight: 600; fill: #1f2937; }
+      .s { font-size: 10.5px; fill: #6b7280; }
+      .tag { font-size: 10px; fill: #9ca3af; }
+    </style>
+  </defs>
+
+  <text class="s" x="80" y="30">高层 · 慢（约 1 Hz）—— 把大目标拆成子任务</text>
+
+  <rect x="80" y="42" width="198" height="46" rx="7" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.3"/>
+  <text class="h" x="179" y="70" text-anchor="middle">拿起红杯子</text>
+
+  <rect x="286" y="42" width="198" height="46" rx="7" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.3"/>
+  <text class="h" x="385" y="70" text-anchor="middle">移到水槽上方</text>
+
+  <rect x="492" y="42" width="198" height="46" rx="7" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.3"/>
+  <text class="h" x="591" y="70" text-anchor="middle">倒掉里面的水</text>
+
+  <path d="M179,88 V118" stroke="#c4b5fd" stroke-width="1.3" fill="none" marker-end="url(#ar7)"/>
+  <path d="M385,88 V118" stroke="#c4b5fd" stroke-width="1.3" fill="none" marker-end="url(#ar7)"/>
+  <path d="M591,88 V118" stroke="#c4b5fd" stroke-width="1.3" fill="none" marker-end="url(#ar7)"/>
+
+  <rect x="80" y="122" width="610" height="34" rx="5" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.1"/>
+  <g stroke="#bfdbfe" stroke-width="1">
+    <path d="M132,122 V156 M184,122 V156 M236,122 V156 M288,122 V156 M340,122 V156
+             M392,122 V156 M444,122 V156 M496,122 V156 M548,122 V156 M600,122 V156 M652,122 V156"/>
+  </g>
+
+  <text class="s" x="80" y="182">低层 · 快（约 50 Hz）—— 把子任务变成每一帧的动作</text>
+
+  <text class="tag" x="80" y="210">关键：低层收到的是一条短指令，不是原始的长任务——上下文一下子空出来了</text>
+  <text class="tag" x="80" y="230">代价：高层一旦判断错，下面整段都白做；而且两层加起来，延迟也叠在一起</text>
+</svg>

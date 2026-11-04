@@ -1,0 +1,121 @@
+/* ===== VLA 入门手册 自定义样式 ===== */
+
+/* 正文行距略放大：这本书段落偏长，密排容易累 */
+.md-typeset {
+  font-size: 0.78rem;
+  line-height: 1.85;
+}
+
+/* 配图统一容器：居中 + 图注 */
+.figure {
+  margin: 1.8rem 0;
+  text-align: center;
+}
+
+.figure img,
+.figure svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.figure .caption {
+  margin-top: 0.6rem;
+  font-size: 0.7rem;
+  color: var(--md-default-fg-color--light);
+  line-height: 1.6;
+}
+
+/* 插图统一按浅色底绘制，深色模式下给它们垫一张浅色卡片，
+   否则深色正文里突然一块纯白会非常刺眼 */
+[data-md-color-scheme="slate"] .figure img {
+  background-color: #f7f8fa;
+  padding: 14px 18px;
+  border-radius: 8px;
+}
+
+/* 表格：稍微紧凑一点，中文表格容易撑太高 */
+.md-typeset table:not([class]) {
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--md-default-fg-color--lightest);
+  font-weight: 700;
+}
+
+/* 强调「这是类比」的块 */
+.analogy {
+  border-left: 3px solid var(--md-accent-fg-color);
+  background: var(--md-code-bg-color);
+  padding: 0.8rem 1rem;
+  margin: 1.2rem 0;
+  border-radius: 4px;
+}
+
+.analogy::before {
+  content: "打个比方";
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--md-accent-fg-color);
+  margin-bottom: 0.35rem;
+}
+
+/* 每章末尾的自测三问 */
+.quiz {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 6px;
+  padding: 0.8rem 1.1rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.quiz > p:first-child {
+  font-weight: 700;
+  margin-top: 0;
+}
+
+/* 一句话总结 */
+.takeaway {
+  border-top: 2px solid var(--md-primary-fg-color);
+  border-bottom: 2px solid var(--md-primary-fg-color);
+  padding: 0.9rem 0;
+  margin: 2rem 0 1rem;
+  font-weight: 500;
+}
+
+/* 首页的小卡片网格 */
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+}
+
+.grid-cards > div {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 6px;
+  padding: 0.8rem 0.9rem;
+  font-size: 0.72rem;
+  line-height: 1.65;
+}
+
+.grid-cards > div > strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--md-primary-fg-color);
+}
+
+/* mermaid 图居中 */
+.mermaid {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+/* 长公式允许横向滚动，别撑破版心 */
+.md-typeset div.arithmatex {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.2rem 0;
+}
