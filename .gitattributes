@@ -1,0 +1,9 @@
+# 统一换行符，避免 Windows 提交 CRLF 导致 CI 构建差异
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.woff binary
+*.woff2 binary
