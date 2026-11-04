@@ -2,7 +2,7 @@
 
 > 从零理解视觉-语言-动作模型（Vision-Language-Action）——一本读完能跟人正常讨论 VLA 的概念手册。
 
-[![Docs](https://img.shields.io/badge/docs-online-success)](https://example.github.io/vla-for-beginners/)
+[![Docs](https://img.shields.io/badge/docs-online-success)](https://JerryNight.github.io/vla-for-beginners/)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/content-CC%20BY--NC--SA%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![License: MIT](https://img.shields.io/badge/code-MIT-blue)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](./CONTRIBUTING.md)

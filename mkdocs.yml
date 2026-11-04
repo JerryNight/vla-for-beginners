@@ -1,10 +1,10 @@
 site_name: VLA 入门手册
 site_description: 从零理解视觉-语言-动作模型（Vision-Language-Action），一本不要求你动手的概念手册
 site_author: VLA 入门手册 contributors
-site_url: https://example.github.io/vla-for-beginners/
+site_url: https://JerryNight.github.io/vla-for-beginners/
 
 repo_name: vla-for-beginners
-repo_url: https://github.com/example/vla-for-beginners
+repo_url: https://github.com/JerryNight/vla-for-beginners
 edit_uri: edit/main/docs/
 
 copyright: 内容以 CC BY-NC-SA 4.0 协议共享 · 代码以 MIT 协议开源
