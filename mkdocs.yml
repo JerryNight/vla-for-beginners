@@ -1,0 +1,123 @@
+site_name: VLA 入门手册
+site_description: 从零理解视觉-语言-动作模型（Vision-Language-Action），一本不要求你动手的概念手册
+site_author: VLA 入门手册 contributors
+site_url: https://example.github.io/vla-for-beginners/
+
+repo_name: vla-for-beginners
+repo_url: https://github.com/example/vla-for-beginners
+edit_uri: edit/main/docs/
+
+copyright: 内容以 CC BY-NC-SA 4.0 协议共享 · 代码以 MIT 协议开源
+
+theme:
+  name: material
+  language: zh
+  icon:
+    logo: material/robot-outline
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: deep orange
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: deep orange
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到浅色模式
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js
+
+extra_css:
+  - assets/css/extra.css
+
+nav:
+  - 开始之前:
+      - 这本书是什么: index.md
+      - 怎么读这本书: reading-guide.md
+  - 第一部分 · 先把误解拆掉:
+      - 1.1 关于 VLA 的五个误解: part0-why/00-five-misconceptions.md
+      - 1.2 为什么非要 VLA: part0-why/01-why-vla.md
+      - 1.3 VLA 的一句话定义: part0-why/02-definition.md
+  - 第二部分 · 三个词拆开看:
+      - 2.0 读后面所有章节前，先补三个地基: part1-three-words/03-prerequisites.md
+      - 2.1 视觉：一张图怎么变成一串数字: part1-three-words/04-vision.md
+      - 2.2 语言：机器怎么"听懂"人话: part1-three-words/05-language.md
+      - 2.3 动作：机器人怎么"动"才算动: part1-three-words/06-action.md
+  - 第三部分 · 怎么把三者连起来:
+      - 3.1 对齐：CLIP 为什么是分水岭: part2-connecting/07-alignment.md
+      - 3.2 融合：三股信息在哪里合流: part2-connecting/08-fusion.md
+      - 3.3 动作解码：三种把想法变成数字的流派: part2-connecting/09-action-head.md
+  - 第四部分 · 训练到底在训练什么:
+      - 4.1 数据：一条机器人训练数据长什么样: part3-training/10-data.md
+      - 4.2 行为克隆：模仿学习为什么会翻车: part3-training/11-behavior-cloning.md
+      - 4.3 预训练与后训练：常识从哪来，动作从哪来: part3-training/12-pretrain.md
+  - 第五部分 · 模型谱系地图:
+      - 5.1 谱系总览：五年，五个转折: part4-map/13-lineage.md
+      - 5.2 π₀ 与流匹配：为什么它把速度提到了 50Hz: part4-map/14-pi0.md
+      - 5.3 分层 VLA：让大脑和小脑分工: part4-map/15-hierarchical.md
+  - 第六部分 · 诚实的部分:
+      - 6.1 两个卡脖子的硬约束: part5-reality/16-bottlenecks.md
+      - 6.2 泛化与评测：怎么判断一个 VLA 是真行还是演得好: part5-reality/17-evaluation.md
+  - 第七部分 · 接下来怎么走:
+      - 7.1 三条不同的继续学习路径: part6-next/18-how-to-continue.md
+  - 附录:
+      - 术语表（中英对照）: appendix/glossary.md
+      - 论文与资源清单: appendix/papers.md
+      - 零硬件游乐场: appendix/playground.md
+      - 常见问题: appendix/faq.md

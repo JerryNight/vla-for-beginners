@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" width="760" height="340" role="img" aria-label="VLA 模型谱系时间线">
+  <defs>
+    <marker id="ar6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9ca3af"/>
+    </marker>
+    <style>
+      text { font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif; }
+      .yr { font-size: 10px; fill: #9ca3af; }
+      .nm { font-size: 12px; font-weight: 600; fill: #1f2937; }
+      .ds { font-size: 10px; fill: #6b7280; }
+    </style>
+  </defs>
+
+  <!-- 时间轴 -->
+  <line x1="60" y1="200" x2="726" y2="200" stroke="#d1d5db" stroke-width="2" marker-end="url(#ar6)"/>
+  <text class="yr" x="712" y="186" text-anchor="end">2025 →</text>
+
+  <!-- 1 SayCan -->
+  <line x1="100" y1="194" x2="100" y2="170" stroke="#c4b5fd" stroke-width="1.3"/>
+  <circle cx="100" cy="200" r="5.5" fill="#a78bfa"/>
+  <rect x="35" y="104" width="130" height="66" rx="7" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.2"/>
+  <text class="yr" x="100" y="122" text-anchor="middle">2022 · SayCan</text>
+  <text class="nm" x="100" y="141" text-anchor="middle">语言能做规划吗</text>
+  <text class="ds" x="100" y="158" text-anchor="middle">能，但只会调用现成技能</text>
+
+  <!-- 2 RT-1 -->
+  <line x1="245" y1="206" x2="245" y2="230" stroke="#93c5fd" stroke-width="1.3"/>
+  <circle cx="245" cy="200" r="5.5" fill="#60a5fa"/>
+  <rect x="180" y="230" width="130" height="66" rx="7" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+  <text class="yr" x="245" y="248" text-anchor="middle">2023 · RT-1</text>
+  <text class="nm" x="245" y="267" text-anchor="middle">一个模型干多种活</text>
+  <text class="ds" x="245" y="284" text-anchor="middle">13 万条轨迹，700 个任务</text>
+
+  <!-- 3 RT-2 -->
+  <line x1="390" y1="194" x2="390" y2="170" stroke="#67e8f9" stroke-width="1.3"/>
+  <circle cx="390" cy="200" r="5.5" fill="#22d3ee"/>
+  <rect x="325" y="104" width="130" height="66" rx="7" fill="#ecfeff" stroke="#67e8f9" stroke-width="1.2"/>
+  <text class="yr" x="390" y="122" text-anchor="middle">2023 · RT-2</text>
+  <text class="nm" x="390" y="141" text-anchor="middle">VLM 直接输出动作</text>
+  <text class="ds" x="390" y="158" text-anchor="middle">把动作当成一种 token</text>
+
+  <!-- 4 OpenVLA -->
+  <line x1="535" y1="206" x2="535" y2="230" stroke="#93c5fd" stroke-width="1.3"/>
+  <circle cx="535" cy="200" r="5.5" fill="#60a5fa"/>
+  <rect x="470" y="230" width="130" height="66" rx="7" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+  <text class="yr" x="535" y="248" text-anchor="middle">2024 · OpenVLA</text>
+  <text class="nm" x="535" y="267" text-anchor="middle">能不能开源复现</text>
+  <text class="ds" x="535" y="284" text-anchor="middle">7B 全开源，97 万条轨迹</text>
+
+  <!-- 5 pi0 -->
+  <line x1="680" y1="194" x2="680" y2="170" stroke="#6ee7b7" stroke-width="1.3"/>
+  <circle cx="680" cy="200" r="5.5" fill="#10b981"/>
+  <rect x="615" y="104" width="130" height="66" rx="7" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2"/>
+  <text class="yr" x="680" y="122" text-anchor="middle">2024 · π₀</text>
+  <text class="nm" x="680" y="141" text-anchor="middle">又通用又高频</text>
+  <text class="ds" x="680" y="158" text-anchor="middle">流匹配，50 Hz 控制</text>
+</svg>

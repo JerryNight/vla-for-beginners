@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" width="760" height="320" role="img" aria-label="三种动作解码流派：自回归、扩散、流匹配">
+  <defs>
+    <marker id="ar5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9ca3af"/>
+    </marker>
+    <marker id="ar5b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#10b981"/>
+    </marker>
+    <style>
+      text { font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif; }
+      .h { font-size: 13px; font-weight: 600; fill: #1f2937; }
+      .s { font-size: 10.5px; fill: #6b7280; }
+      .k { font-size: 10px; fill: #9ca3af; }
+      .big { font-size: 11px; font-weight: 600; fill: #374151; }
+    </style>
+  </defs>
+
+  <!-- 面板底 -->
+  <rect x="20" y="18" width="230" height="286" rx="8" fill="#fafafa" stroke="#e5e7eb" stroke-width="1.2"/>
+  <rect x="265" y="18" width="230" height="286" rx="8" fill="#fafafa" stroke="#e5e7eb" stroke-width="1.2"/>
+  <rect x="510" y="18" width="230" height="286" rx="8" fill="#fafafa" stroke="#e5e7eb" stroke-width="1.2"/>
+
+  <!-- ① 自回归 -->
+  <text class="h" x="135" y="44" text-anchor="middle">① 自回归</text>
+  <g fill="#dbeafe" stroke="#60a5fa" stroke-width="1.1">
+    <rect x="40" y="108" width="28" height="28" rx="3"/>
+    <rect x="78" y="108" width="28" height="28" rx="3"/>
+    <rect x="116" y="108" width="28" height="28" rx="3"/>
+    <rect x="154" y="108" width="28" height="28" rx="3"/>
+    <rect x="192" y="108" width="28" height="28" rx="3"/>
+  </g>
+  <g stroke="#9ca3af" stroke-width="1.2" marker-end="url(#ar5)">
+    <path d="M68,122 H76"/>
+    <path d="M106,122 H114"/>
+    <path d="M144,122 H152"/>
+    <path d="M182,122 H190"/>
+  </g>
+  <text class="k" x="224" y="127">…</text>
+  <text class="s" x="135" y="160" text-anchor="middle">a₁ → a₂ → a₃ → …</text>
+  <text class="s" x="135" y="180" text-anchor="middle">一次只出一个 token</text>
+  <text class="big" x="135" y="222" text-anchor="middle">速度：慢</text>
+  <text class="s" x="135" y="242" text-anchor="middle">N 维就要 N 次前向</text>
+  <text class="s" x="135" y="262" text-anchor="middle">精度受离散化限制</text>
+
+  <!-- ② 扩散 -->
+  <text class="h" x="380" y="44" text-anchor="middle">② 扩散</text>
+  <g stroke-width="1.1">
+    <rect x="278" y="108" width="28" height="28" rx="3" fill="#e5e7eb" stroke="#d1d5db"/>
+    <rect x="316" y="108" width="28" height="28" rx="3" fill="#dbeafe" stroke="#a5b4fc"/>
+    <rect x="354" y="108" width="28" height="28" rx="3" fill="#bfdbfe" stroke="#818cf8"/>
+    <rect x="392" y="108" width="28" height="28" rx="3" fill="#93c5fd" stroke="#6366f1"/>
+    <rect x="430" y="108" width="28" height="28" rx="3" fill="#60a5fa" stroke="#4f46e5"/>
+  </g>
+  <g stroke="#9ca3af" stroke-width="1.2" marker-end="url(#ar5)">
+    <path d="M306,122 H314"/>
+    <path d="M344,122 H352"/>
+    <path d="M382,122 H390"/>
+    <path d="M420,122 H428"/>
+  </g>
+  <text class="s" x="380" y="160" text-anchor="middle">纯噪声 → 逐步去噪 → 动作</text>
+  <text class="s" x="380" y="180" text-anchor="middle">每一步都是一次完整前向</text>
+  <text class="big" x="380" y="222" text-anchor="middle">速度：很慢</text>
+  <text class="s" x="380" y="242" text-anchor="middle">通常 10–100 步</text>
+  <text class="s" x="380" y="262" text-anchor="middle">但能表达多个峰</text>
+
+  <!-- ③ 流匹配 -->
+  <text class="h" x="625" y="44" text-anchor="middle">③ 流匹配</text>
+  <rect x="524" y="108" width="28" height="28" rx="3" fill="#e5e7eb" stroke="#d1d5db"/>
+  <rect x="686" y="108" width="28" height="28" rx="3" fill="#6ee7b7" stroke="#10b981"/>
+  <path d="M560,122 C 600,80, 640,80, 680,122" stroke="#10b981" stroke-width="1.6" fill="none" marker-end="url(#ar5b)"/>
+  <path d="M560,122 H680" stroke="#10b981" stroke-width="1.2" fill="none" stroke-dasharray="3 3" opacity="0.5"/>
+  <text class="k" x="620" y="96" text-anchor="middle">学一条直达路径</text>
+  <text class="s" x="625" y="160" text-anchor="middle">噪声 → 沿速度场 → 动作</text>
+  <text class="s" x="625" y="180" text-anchor="middle">几步就能到</text>
+  <text class="big" x="625" y="222" text-anchor="middle">速度：较快</text>
+  <text class="s" x="625" y="242" text-anchor="middle">通常 1–10 步</text>
+  <text class="s" x="625" y="262" text-anchor="middle">训练比扩散更稳</text>
+</svg>

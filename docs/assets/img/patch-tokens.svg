@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 290" width="760" height="290" role="img" aria-label="图像被切成 patch，展平成 token 序列">
+  <defs>
+    <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9ca3af"/>
+    </marker>
+    <style>
+      text { font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif; }
+      .h { font-size: 12.5px; font-weight: 600; fill: #1f2937; }
+      .s { font-size: 10.5px; fill: #6b7280; }
+      .xs { font-size: 9.5px; fill: #9ca3af; }
+    </style>
+  </defs>
+
+  <!-- 原图网格 8x8 -->
+  <rect x="40" y="44" width="180" height="180" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.5"/>
+  <g stroke="#d1d5db" stroke-width="1">
+    <path d="M62.5,44 V224 M85,44 V224 M107.5,44 V224 M130,44 V224 M152.5,44 V224 M175,44 V224 M197.5,44 V224"/>
+    <path d="M40,66.5 H220 M40,89 H220 M40,111.5 H220 M40,134 H220 M40,156.5 H220 M40,179 H220 M40,201.5 H220"/>
+  </g>
+  <rect x="40" y="44" width="22.5" height="22.5" fill="#93c5fd" fill-opacity="0.85"/>
+
+  <text class="xs" x="40" y="34">一块 = 16 × 16 像素</text>
+  <text class="h" x="130" y="252" text-anchor="middle">原图 224 × 224 × 3</text>
+  <text class="s" x="130" y="270" text-anchor="middle">150,528 个数，直接喂给网络太大</text>
+
+  <!-- 箭头 -->
+  <path d="M232,134 H300" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar3)"/>
+  <text class="xs" x="266" y="116" text-anchor="middle">切块</text>
+  <text class="xs" x="266" y="160" text-anchor="middle">展平</text>
+  <text class="xs" x="266" y="176" text-anchor="middle">投影</text>
+
+  <!-- token 序列 -->
+  <g fill="#dbeafe" stroke="#60a5fa" stroke-width="1.1">
+    <rect x="320" y="121" width="26" height="26" rx="3"/>
+    <rect x="352" y="121" width="26" height="26" rx="3"/>
+    <rect x="384" y="121" width="26" height="26" rx="3"/>
+    <rect x="416" y="121" width="26" height="26" rx="3"/>
+    <rect x="448" y="121" width="26" height="26" rx="3"/>
+    <rect x="480" y="121" width="26" height="26" rx="3"/>
+    <rect x="512" y="121" width="26" height="26" rx="3"/>
+    <rect x="544" y="121" width="26" height="26" rx="3"/>
+    <rect x="576" y="121" width="26" height="26" rx="3"/>
+    <rect x="608" y="121" width="26" height="26" rx="3"/>
+    <rect x="640" y="121" width="26" height="26" rx="3"/>
+  </g>
+  <text class="h" x="716" y="140" text-anchor="middle">…</text>
+
+  <text class="h" x="500" y="90" text-anchor="middle">一串 token（当成一句话读）</text>
+  <text class="s" x="500" y="176" text-anchor="middle">一共 14 × 14 = 196 个，每个投影成 768 维向量</text>
+  <text class="s" x="500" y="194" text-anchor="middle">再给每个 token 加上「它原来在图的哪个位置」</text>
+
+  <text class="xs" x="500" y="222" text-anchor="middle">序列长度 = 196，这就是「图像占了上下文多少位置」</text>
+</svg>

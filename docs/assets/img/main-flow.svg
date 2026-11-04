@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 580" width="760" height="580" role="img" aria-label="VLA 信息流主线：从一句话到一个动作">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9ca3af"/>
+    </marker>
+    <marker id="ar-loop" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#f97316"/>
+    </marker>
+    <style>
+      text { font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif; }
+      .h { font-size: 13.5px; font-weight: 600; fill: #1f2937; }
+      .s { font-size: 10.5px; fill: #6b7280; }
+      .note { font-size: 11px; fill: #ea580c; }
+    </style>
+  </defs>
+
+  <rect width="760" height="580" fill="none"/>
+
+  <!-- 输入：视觉 -->
+  <rect x="40" y="20" width="170" height="58" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+  <text class="h" x="125" y="45" text-anchor="middle">相机看到的</text>
+  <text class="s" x="125" y="63" text-anchor="middle">640×480×3 个像素值</text>
+
+  <!-- 输入：语言 -->
+  <rect x="500" y="20" width="170" height="58" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+  <text class="h" x="585" y="45" text-anchor="middle">人说的话</text>
+  <text class="s" x="585" y="63" text-anchor="middle">「把红杯子放到盘子上」</text>
+
+  <path d="M125,78 V114" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+  <path d="M585,78 V114" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+
+  <!-- 编码器 -->
+  <rect x="40" y="118" width="170" height="58" rx="8" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.2"/>
+  <text class="h" x="125" y="143" text-anchor="middle">视觉编码器</text>
+  <text class="s" x="125" y="161" text-anchor="middle">切成小块，再变成向量</text>
+
+  <rect x="500" y="118" width="170" height="58" rx="8" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.2"/>
+  <text class="h" x="585" y="143" text-anchor="middle">语言编码器</text>
+  <text class="s" x="585" y="161" text-anchor="middle">切成词，再变成向量</text>
+
+  <path d="M125,176 V250 H227" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+  <path d="M585,176 V250 H523" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+
+  <!-- 共享空间 -->
+  <rect x="230" y="216" width="290" height="68" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.4"/>
+  <text class="h" x="375" y="243" text-anchor="middle">共享语义空间</text>
+  <text class="s" x="375" y="264" text-anchor="middle">同一样东西，两种说法，落到同一个点</text>
+
+  <path d="M375,284 V326" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+
+  <!-- 动作解码 -->
+  <rect x="270" y="330" width="210" height="58" rx="8" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2"/>
+  <text class="h" x="375" y="355" text-anchor="middle">动作解码</text>
+  <text class="s" x="375" y="373" text-anchor="middle">自回归 / 扩散 / 流匹配</text>
+
+  <path d="M375,388 V414" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+
+  <!-- 动作输出 -->
+  <rect x="230" y="418" width="290" height="58" rx="8" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/>
+  <text class="h" x="375" y="443" text-anchor="middle" style="font-size:12.5px">a = (Δx, Δy, Δz, Δrx, Δry, Δrz, 夹爪)</text>
+  <text class="s" x="375" y="461" text-anchor="middle">一次吐出一组数字，而不是一个字</text>
+
+  <path d="M375,476 V502" stroke="#9ca3af" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+
+  <!-- 执行 -->
+  <rect x="280" y="506" width="190" height="58" rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.2"/>
+  <text class="h" x="375" y="531" text-anchor="middle">机械臂 + 夹爪执行</text>
+  <text class="s" x="375" y="549" text-anchor="middle">10–100 次/秒，边动边修正</text>
+
+  <!-- 闭环 -->
+  <path d="M280,535 H20 V49 H36" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5 4" fill="none" marker-end="url(#ar-loop)"/>
+  <text class="note" x="34" y="558">每动一次，就再拍一张照：闭环</text>
+</svg>

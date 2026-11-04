@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" width="760" height="340" role="img" aria-label="行为克隆的分布漂移：小误差累积导致模型走出训练分布">
+  <defs>
+    <style>
+      text { font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif; }
+      .h { font-size: 12px; font-weight: 600; fill: #1f2937; }
+      .s { font-size: 10.5px; fill: #6b7280; }
+      .g { font-size: 10.5px; fill: #059669; font-weight: 600; }
+      .r { font-size: 10.5px; fill: #dc2626; font-weight: 600; }
+    </style>
+  </defs>
+
+  <!-- 训练分布覆盖区域 -->
+  <ellipse cx="352" cy="168" rx="212" ry="96" transform="rotate(-17 352 168)"
+           fill="#e5e7eb" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text class="s" x="196" y="240" transform="rotate(-17 196 240)">训练数据覆盖的状态</text>
+
+  <!-- 专家轨迹 -->
+  <path d="M120,252 C 240,214 340,168 452,116 C 520,86 566,72 606,64"
+        fill="none" stroke="#10b981" stroke-width="2.4"/>
+  <circle cx="120" cy="252" r="4.5" fill="#10b981"/>
+  <circle cx="606" cy="64" r="4.5" fill="#10b981"/>
+  <text class="g" x="470" y="52">专家示教（正确答案）</text>
+
+  <!-- 模型轨迹 -->
+  <path d="M120,252 C 220,220 300,196 358,196 C 424,196 476,222 528,254 C 566,278 594,292 616,300"
+        fill="none" stroke="#ef4444" stroke-width="2.2" stroke-dasharray="7 5"/>
+  <circle cx="120" cy="252" r="4.5" fill="#ef4444"/>
+  <circle cx="616" cy="300" r="4.5" fill="#ef4444"/>
+  <text class="r" x="330" y="326">模型实际走的</text>
+
+  <!-- 分叉点 -->
+  <circle cx="330" cy="200" r="6" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
+  <text class="s" x="300" y="192" text-anchor="end">差了几个像素</text>
+  <path d="M302,196 L318,199" stroke="#f59e0b" stroke-width="1.2" fill="none"/>
+
+  <!-- 出界提示 -->
+  <text class="r" x="632" y="304">这里它从没见过</text>
+  <text class="s" x="632" y="322">行为完全不可预测</text>
+
+  <!-- 起点说明 -->
+  <text class="s" x="120" y="276" text-anchor="middle">同一起点</text>
+</svg>

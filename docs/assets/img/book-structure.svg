@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" width="760" height="400" role="img" aria-label="全书七部分结构">
+  <defs>
+    <style>
+      text { font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif; }
+      .t { font-size: 12.5px; font-weight: 600; fill: #1f2937; }
+      .d { font-size: 10.5px; fill: #6b7280; }
+      .n { font-size: 11px; font-weight: 700; fill: #ffffff; }
+    </style>
+  </defs>
+
+  <line x1="60" y1="46" x2="60" y2="360" stroke="#e5e7eb" stroke-width="1.5"/>
+
+  <!-- 1 -->
+  <circle cx="60" cy="59" r="14" fill="#8b5cf6"/>
+  <text class="n" x="60" y="63" text-anchor="middle">1</text>
+  <rect x="86" y="38" width="614" height="42" rx="6" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.1"/>
+  <text class="t" x="104" y="64">先把误解拆掉</text>
+  <text class="d" x="682" y="64" text-anchor="end">五个流行说法，逐个拆开看为什么站不住</text>
+
+  <!-- 2 -->
+  <circle cx="60" cy="109" r="14" fill="#3b82f6"/>
+  <text class="n" x="60" y="113" text-anchor="middle">2</text>
+  <rect x="86" y="88" width="614" height="42" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.1"/>
+  <text class="t" x="104" y="114">三个词拆开看</text>
+  <text class="d" x="682" y="114" text-anchor="end">视觉、语言、动作，各自的最小必要概念</text>
+
+  <!-- 3 -->
+  <circle cx="60" cy="159" r="14" fill="#3b82f6"/>
+  <text class="n" x="60" y="163" text-anchor="middle">3</text>
+  <rect x="86" y="138" width="614" height="42" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.1"/>
+  <text class="t" x="104" y="164">怎么把三者连起来</text>
+  <text class="d" x="682" y="164" text-anchor="end">对齐、融合、动作解码三条线索</text>
+
+  <!-- 4 -->
+  <circle cx="60" cy="209" r="14" fill="#0ea5e9"/>
+  <text class="n" x="60" y="213" text-anchor="middle">4</text>
+  <rect x="86" y="188" width="614" height="42" rx="6" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.1"/>
+  <text class="t" x="104" y="214">训练到底在训练什么</text>
+  <text class="d" x="682" y="214" text-anchor="end">数据长什么样、模仿为什么会翻车</text>
+
+  <!-- 5 -->
+  <circle cx="60" cy="259" r="14" fill="#0ea5e9"/>
+  <text class="n" x="60" y="263" text-anchor="middle">5</text>
+  <rect x="86" y="238" width="614" height="42" rx="6" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.1"/>
+  <text class="t" x="104" y="264">模型谱系地图</text>
+  <text class="d" x="682" y="264" text-anchor="end">五年五次转折，按「解决什么问题」串起来</text>
+
+  <!-- 6 -->
+  <circle cx="60" cy="309" r="14" fill="#f97316"/>
+  <text class="n" x="60" y="313" text-anchor="middle">6</text>
+  <rect x="86" y="288" width="614" height="42" rx="6" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.1"/>
+  <text class="t" x="104" y="314">诚实的部分</text>
+  <text class="d" x="682" y="314" text-anchor="end">卡在哪，以及怎么分辨真进展和好演示</text>
+
+  <!-- 7 -->
+  <circle cx="60" cy="359" r="14" fill="#10b981"/>
+  <text class="n" x="60" y="363" text-anchor="middle">7</text>
+  <rect x="86" y="338" width="614" height="42" rx="6" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.1"/>
+  <text class="t" x="104" y="364">接下来怎么走</text>
+  <text class="d" x="682" y="364" text-anchor="end">三条路径，按你的背景选一条</text>
+</svg>
